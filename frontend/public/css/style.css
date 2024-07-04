@@ -1,0 +1,125 @@
+:root {
+    --primary-rgb: 255, 255, 0;
+    --secondary-rgb: 255, 163, 26;
+    --tertiary-rgb: 0, 204, 0;
+    --body-rgb: 255, 255, 255;
+    --text-rgb: 255, 255, 255;
+    --text-hard-rgb: 217, 217, 217;
+    
+    --bs-primary-rgb: var(--primary-rgb);
+    --bs-secondary-rgb: var(--secondary-rgb);
+    --bs-code-color: rgb(var(--primary-rgb));
+}
+
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: rgb(var(--text-rgb));
+}
+
+.text-tertiary {
+    color: rgb(var(--tertiary-rgb))
+}
+
+.text-error {
+    color: rgb(var(--bs-danger-rgb));
+    text-decoration: underline;
+    text-align: center;
+}
+
+.button-create {
+    color: rgb(var(--secondary-rgb));
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid rgb(var(--tertiary-rgb));
+    border-radius: 5px;
+}
+
+.button-post {
+    color: rgb(var(--text-rgb));
+    border: 3px solid rgb(var(--primary-rgb));
+    border-radius: 5px;
+    background-color: rgb(var(--tertiary-rgb));
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+.button-edit {
+    color: rgb(var(--text-rgb));
+    border: 3px solid rgb(var(--primary-rgb));
+    border-radius: 5px;
+    background-color: rgb(var(--bs-success-rgb));
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+.button-delete {
+    color: rgb(var(--text-rgb));
+    border: 3px solid rgb(var(--primary-rgb));
+    border-radius: 5px;
+    background-color: rgb(var(--bs-danger-rgb));
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+.form-admin label {
+    color: rgb(var(--text-rgb));
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.form-admin textarea {
+    resize: none;
+    white-space: nowrap;
+}
+
+.article {
+    width: 20rem;
+    cursor: pointer;
+}
+
+.article-detail {
+    color: rgb(var(--text-rgb));
+}
+
+.article-detail-content * {
+    margin-inline: 0px;
+}
+
+.article-detail-content>pre,
+.article-detail-content>p>code {
+    display: block;
+    width: 100%;
+    border: 3px solid rgb(var(--tertiary-rgb));
+    padding: 7px;
+    border-radius: 10px;
+    color: var(--bs-code-color);
+}
+
+.article-detail-content>p>code {
+    border-radius: 0px;
+}
+
+.border-tertiary {
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--tertiary-rgb), var(--bs-border-opacity)) !important;
+}
+
+.navbar {
+    --bs-navbar-brand-color: rgb(var(--text-rgb));
+    --bs-navbar-brand-hover-color: rgb(var(--text-rgb));
+}
+
+.navbar-brand {
+    text-shadow:
+        0px 0px 5px rgba(var(--secondary-rgb)),
+        0px 0px 10px rgba(var(--secondary-rgb));
+}
+
+.card {
+    --bs-card-border-color: rgb(var(--tertiary-rgb));
+    --bs-card-border-width: 3px;
+    --bs-card-color: rgb(var(--secondary-rgb));
+}
