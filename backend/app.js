@@ -6,8 +6,10 @@ process.env.ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS.split(',')
 const fastify = require('fastify')({
     logger: {
         transport: {
-            targets: [
+            targets: process.env.NODE_ENV === 'development' ? [
                 { target: "@fastify/one-line-logger", options: { destination: './log.txt', colorize: false, append: false } },
+                { target: "@fastify/one-line-logger" }
+            ] : [
                 { target: "@fastify/one-line-logger" }
             ]
         }
