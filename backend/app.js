@@ -7,6 +7,10 @@ const isLocalMode = toBoolean(minimist(process.argv.slice(2))['local'])
 config.loadConfig(isLocalMode)
 
 // Initliaze the app
+const date = require('date-and-time')
+const LOG_FILENAME = `${date.format(new Date(), 'DD-MM-YYYY')}.log`
+const LOG_DIR = 'logs'
+
 const fastify = require('fastify')({
     logger: {
         transport: {
@@ -14,7 +18,7 @@ const fastify = require('fastify')({
                 {
                     target: "@fastify/one-line-logger",
                     options: {
-                        destination: './log.txt',
+                        destination: `./${LOG_DIR}/${LOG_FILENAME}`,
                         colorize: false,
                         append: false
                     }
