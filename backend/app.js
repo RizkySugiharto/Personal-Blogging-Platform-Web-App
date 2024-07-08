@@ -1,13 +1,24 @@
 // Load environment configurations
-require('dotenv').config()
-process.env.ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS.split(',')
+const minimist = require('minimist')
+const toBoolean = require('to-boolean')
+const config = require('./config')
+
+const isLocalMode = toBoolean(minimist(process.argv.slice(2))['local'])
+config.loadConfig(isLocalMode)
 
 // Initliaze the app
 const fastify = require('fastify')({
     logger: {
         transport: {
             targets: process.env.NODE_ENV === 'development' ? [
-                { target: "@fastify/one-line-logger", options: { destination: './log.txt', colorize: false, append: false } },
+                {
+                    target: "@fastify/one-line-logger",
+                    options: {
+                        destination: './log.txt',
+                        colorize: false,
+                        append: false
+                    }
+                },
                 { target: "@fastify/one-line-logger" }
             ] : [
                 { target: "@fastify/one-line-logger" }
@@ -20,8 +31,8 @@ const fastify = require('fastify')({
 const mongoose = require('mongoose')
 mongoose
     .connect(process.env.MONGODB_URI)
-    .then(() => fastify.log.info('Connected to MongoDB..'))
-    .catch((err) => fastify.log.error(err))
+    .then(() => fastify.log.info('Mongoose: Connected'))
+    .catch((err) => fastify.log.error(`Mongoose: ${err}`))
 
 // Register other plugins
 fastify.register(require('./plugins/requestValidation'))

@@ -12,6 +12,9 @@
                 :createdAt="article.createdAt"
             />
         </div>
+        <div v-else-if="isLoading" class="d-flex justify-content-center">
+            <h2>Please wait....</h2>
+        </div>
         <div v-else class="d-flex justify-content-center">
             <h2>There are still no articles posted :(</h2>
         </div>
@@ -30,6 +33,7 @@ export default {
     },
     data() {
         return {
+            isLoading: true,
             articles: [],
             errMsg: ""
         }
@@ -45,9 +49,11 @@ export default {
                 article.createdAt = date.transform(article.createdAt, process.env.VUE_APP_DATETIME_PARSE, process.env.VUE_APP_DATETIME_FORMAT)
             }
         } catch (error) {
-            this.errMsg = error.response.data.message || error.message
+            this.errMsg = error.message
             this.$logger.error(error)
         }
+
+        this.isLoading = false
     }
 }
 </script>

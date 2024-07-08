@@ -3,17 +3,18 @@
         <div v-if="errMsg">
             <h3 class="text-error">{{ errMsg }}</h3>
         </div>
+        <div v-else-if="article._id" class="article-detail">
+            <AdminButtons :articleId="this.$route.params.id"/>
+            <h1 class="m-0 mt-2 fw-bold">{{ article.title }}</h1>
+            <h6 class="m-0 mt-2 mb-4">{{ article.createdAt }}</h6>
+            <img :src="article.thumbnail" class="w-100 border border-tertiary border-3">
+            <div class="my-4 article-detail-content" v-html="article.content"></div>
+        </div>
+        <div v-else-if="isLoading">
+            <p class="text-center mt-4 fs-4">Please wait...</p>
+        </div>
         <div v-else>
-            <div v-if="article" class="article-detail">
-                <AdminButtons :articleId="this.$route.params.id"/>
-                <h1 class="m-0 mt-2 fw-bold">{{ article.title }}</h1>
-                <h6 class="m-0 mt-2 mb-4">{{ article.createdAt }}</h6>
-                <img :src="article.thumbnail" class="w-100 border border-tertiary border-3">
-                <div class="my-4 article-detail-content" v-html="article.content"></div>
-            </div>
-            <div v-else>
-                <p class="text-center mt-4 fs-4" style="color: rgb(100, 100, 100)">Article Not Found :(</p>
-            </div>
+            <p class="text-center mt-4 fs-4">Article Not Found :(</p>
         </div>
     </div>
 </template>
@@ -31,7 +32,8 @@ export default {
     },
     data() {
         return {
-            article: [],
+            isLoading: true,
+            article: {},
             errMsg: "",
             isAdmin: isAdmin()
         }
@@ -54,10 +56,15 @@ export default {
                 process.env.VUE_APP_DATETIME_PARSE,
                 process.env.VUE_APP_DATETIME_FORMAT
             )
+            this.isLoading = false
         } catch (error) {
-            this.errMsg = error.response.data.message || error.message
+            this.errMsg = error.message
             this.$logger.error(error)
+
+            this.isLoading = false
         }
+
+        this.$logger.debug(this.article)
     }
 }
 </script>
