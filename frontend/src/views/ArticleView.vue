@@ -6,7 +6,7 @@
         <div v-else-if="article._id" class="article-detail">
             <AdminButtons :articleId="this.$route.params.id"/>
             <h1 class="m-0 mt-2 fw-bold">{{ article.title }}</h1>
-            <h6 class="m-0 mt-2 mb-4">{{ article.createdAt }}</h6>
+            <h6 class="m-0 mt-2 mb-4">Created At {{ article.createdAt }}</h6>
             <img :src="article.thumbnail" class="w-100 border border-tertiary border-3">
             <div class="my-4 article-detail-content" v-html="article.content"></div>
         </div>

@@ -1,11 +1,47 @@
+const date = require('date-and-time')
+const filterDateFormat = 'DD-MM-YYYY'
+
+function isFilterDateValid(query) {
+    const args = query.split(' ')
+
+    if (args.length !== 4) {
+        return false
+    }
+
+    if (!(args[0] === 'from' && args[2] === 'to')) {
+        return false
+    }
+
+    const fromDate = args[1]
+    const toDate = args[3]
+
+    return date.isValid(fromDate, filterDateFormat) && date.isValid(toDate, filterDateFormat)
+}
+
 module.exports = function (fastify, opts, done) {
     const Article = require('../../../models/Article.model')
     const { convertMultipartToJSON } = require('../../../utils/convert')
 
     fastify.get('/', async (req, reply) => {
         try {
-            const articles = await Article.find()
-            if (!articles) throw new Error('Failed to get all articles')
+            if (!(req.query.filterByDate && isFilterDateValid(req.query.filterByDate))) {
+                const articles = await Article.find()
+                if (!articles) { throw new Error('Failed to get all articles') }
+                    
+                reply.code(200).send(articles)
+                return reply
+            }
+            
+            const filterArgs = req.query.filterByDate.split(' ')
+            const fromDate = date.parse(filterArgs[1], filterDateFormat)
+            const toDate = date.parse(filterArgs[3], filterDateFormat)
+
+            const articles = await Article.find({
+                'createdAt': {
+                    '$gte': fromDate,
+                    '$lte': toDate
+                }
+            })
             reply.code(200).send(articles)
         } catch (error) {
             reply.code(500).send(error)

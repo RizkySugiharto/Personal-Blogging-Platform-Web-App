@@ -17,13 +17,14 @@ const fastify = require('fastify')({
             targets: process.env.NODE_ENV === 'development' ? [
                 {
                     target: "@fastify/one-line-logger",
+                    level: "debug",
                     options: {
                         destination: `./${LOG_DIR}/${LOG_FILENAME}`,
                         colorize: false,
                         append: false
                     }
                 },
-                { target: "@fastify/one-line-logger" }
+                { target: "@fastify/one-line-logger", level: "debug", }
             ] : [
                 { target: "@fastify/one-line-logger" }
             ]
