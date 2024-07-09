@@ -18,6 +18,8 @@ function loadConfig(isLocalMode) {
             override: true
         })
     }
+
+    process.env.ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS.split(' ')
 }
 
 module.exports.loadConfig = loadConfig
