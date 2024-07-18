@@ -41,7 +41,7 @@ export default {
         onThumbnailChanged() {
             this.thumbnail = this.$refs.thumbnail.files[0]
             
-            this.$router.debug({
+            this.$log.debug({
                 title: this.title,
                 thumbnail: this.thumbnail,
                 content: this.content

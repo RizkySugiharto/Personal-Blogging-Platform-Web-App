@@ -9,6 +9,9 @@ export const useUserStore = defineStore('user', {
         }
     },
     actions: {
+        regenerateUserId() {
+            this.userId = uuidv7()
+        },
         removeAdmin() {
             this.adminKey = ""
         }

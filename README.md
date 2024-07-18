@@ -34,13 +34,9 @@ You can edit this below environment variables that you want:
 
 This variable functions to determine whether this application is used for `development` or `production`. The value of this variable can only be filled with: `development`, `production`. Default value: `development`.
 
-- **VUE_APP_BACKEND_URI**
+- **VUE_APP_BACKEND_URL**
 
 This variable is used to connect the front-end application with the back-end application using the URL from the back-end website. Example values: `localhost:3000`, `http://localhost:3000`, `http://api.pbp.com`, `https://api.pbp.com/v3`. Default value: `http://localhost:3000/v1`
-
-- **VUE_APP_BACKEND_API_KEY**
-
-This variable is used to secure the connection between the front-end (UI) and the back-end (API) using a key where the UI application must include the value of this variable to communicate with the API application. The value must be the same as the value of the `API_KEY` variable in the API server section. For example: ```3[=rpVzf`G$IaHBs9o{*'>}%=|r'[qeF`kU!Y|a6Mc!fC*P-W!ba6Ju[s|/=!+8Ms]BQVk&}?!!C6N }4[~8%abF$qT(/v[5<{y}[]6}*pD}Q.|<#SD-T+dX%A48QwIeN.3er'2ux$lBTI$[:aK)cY# K"*$n;|4XHE$%@k"```. Default value: `secret`.
 
 - **VUE_APP_DATETIME_PARSE**
 
@@ -67,10 +63,6 @@ This variable is used to determine the address or link that will be connected to
 - **PORT**
 
 This variable is used to determine what port will be opened to connect to the API server. For example: `4000`. Default Value: `3000`.
-
-- **API_KEY**
-
-This variable is used to secure the connection between the frontend server and the backend server. The frontend server must include a key (the value of this variable) to be able to communicate with the backend server. Because if any client or user can easily access the backend server, then that user can also get admin access rights, such as posting, editing, or even deleting articles. The key must be strong and complex so that it is not easily guessed by suspicious users. For example: ```3[=rpVzf`G$IaHBs9o{*'>}%=|r'[qeF`kU!Y|a6Mc!fC*P-W!ba6Ju[s|/=!+8Ms]BQVk&}?!!C6N }4[~8%abF$qT(/v[5<{y}[]6}*pD}Q.|<#SD-T+dX%A48QwIeN.3er'2ux$lBTI$[:aK)cY# K"*$n;|4XHE$%@k"```. Default value: `secret`.
 
 - **ALLOWED_ORIGINS**
 

@@ -5,9 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "prod": "node app.js",
     "dev-local": "nodemon app.js --local=true",
-    "prod-local": "node app.js --local=true"
+    "start": "node app.js"
   },
   "author": "Mr. Ryto",
   "license": "ISC",
